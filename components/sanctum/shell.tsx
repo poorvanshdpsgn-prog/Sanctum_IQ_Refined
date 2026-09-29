@@ -3,6 +3,7 @@
 import { useState } from "react"
 import {
   LayoutDashboard,
+  Info,
   PackageOpen,
   Radar,
   Cpu,
@@ -26,10 +27,12 @@ import { ControlPanel } from "./control-panel"
 import { ConnectivityView } from "./connectivity-view"
 import { ArchitectureView } from "./architecture-view"
 import { RoadmapView } from "./roadmap-view"
+import { AboutView } from "./about-view"
 import { SectionTitle, StatusDot } from "./primitives"
 
 type NavId =
   | "dashboard"
+  | "about"
   | "bag"
   | "sensors"
   | "log"
@@ -41,6 +44,7 @@ type NavId =
 
 const NAV: { id: NavId; label: string; icon: LucideIcon; group: string }[] = [
   { id: "dashboard", label: "Command Center", icon: LayoutDashboard, group: "Monitor" },
+  { id: "about", label: "About Sanctum IQ", icon: Info, group: "System" },
   { id: "bag", label: "Bag Security", icon: PackageOpen, group: "Monitor" },
   { id: "sensors", label: "Sensors", icon: Radar, group: "Monitor" },
   { id: "log", label: "Event Log", icon: History, group: "Monitor" },
@@ -205,6 +209,8 @@ export function Shell() {
 
           <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
             {active === "dashboard" ? <DashboardView /> : null}
+
+            {active === "about" ? <AboutView /> : null}
 
             {active === "bag" ? (
               <div>
